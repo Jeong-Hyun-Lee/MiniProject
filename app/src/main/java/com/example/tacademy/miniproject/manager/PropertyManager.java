@@ -11,7 +11,6 @@ import com.example.tacademy.miniproject.MyApplication;
  */
 public class PropertyManager {
     private static PropertyManager instance;
-
     public static PropertyManager getInstance() {
         if (instance == null) {
             instance = new PropertyManager();
@@ -21,9 +20,11 @@ public class PropertyManager {
 
     SharedPreferences mPrefs;
     SharedPreferences.Editor mEditor;
+
     private static final String KEY_EMAIL = "email";
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_REGISTRATION_ID = "regid";
+    private static final String KEY_FACEBOOK_ID = "facebookid";
 
     private PropertyManager() {
         Context context = MyApplication.getContext();
@@ -56,5 +57,14 @@ public class PropertyManager {
 
     public String getRegistrationId() {
         return mPrefs.getString(KEY_REGISTRATION_ID, "");
+    }
+
+    public void setFacebookId(String facebookid) {
+        mEditor.putString(KEY_FACEBOOK_ID, facebookid);
+        mEditor.commit();
+    }
+
+    public String getFacebookId() {
+        return mPrefs.getString(KEY_FACEBOOK_ID, "");
     }
 }

@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "170943597686",
+    "project_id": "jeonghyuntestgcm"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170943597686:android:4cc8a2dfacdb9dcb",
+        "android_client_info": {
+          "package_name": "com.example.tacademy.miniproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJWa-YnBB4l5hkotBUd3i-XWxlsy_OIJI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

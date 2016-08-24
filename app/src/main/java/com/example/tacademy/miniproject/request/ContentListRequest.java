@@ -2,32 +2,33 @@ package com.example.tacademy.miniproject.request;
 
 import android.content.Context;
 
+import com.example.tacademy.miniproject.data.ContentData;
 import com.example.tacademy.miniproject.data.NetworkResult;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.List;
 
 import okhttp3.HttpUrl;
 import okhttp3.Request;
 
 /**
- * Created by Tacademy on 2016-08-10.
+ * Created by Tacademy on 2016-08-12.
  */
-public class LogOutRequest extends AbstractRequest<NetworkResult<String>> {
+public class ContentListRequest extends AbstractRequest<NetworkResult<List<ContentData>>>{
 
     Request request;
-    public LogOutRequest(Context context) {
+    public ContentListRequest(Context context) {
         HttpUrl url = getBaseUrlBuilder()
-                .addPathSegment("logout")
+                .addPathSegment("contents")
                 .build();
         request = new Request.Builder()
                 .url(url)
-                .tag(context)
                 .build();
     }
     @Override
     protected Type getType() {
-        return new TypeToken<NetworkResult<String>>(){}.getType();
+        return new TypeToken<NetworkResult<List<ContentData>>>(){}.getType();
     }
 
     @Override

@@ -14,6 +14,7 @@ import com.example.tacademy.miniproject.data.NetworkResult;
 import com.example.tacademy.miniproject.data.User;
 import com.example.tacademy.miniproject.manager.NetworkManager;
 import com.example.tacademy.miniproject.manager.NetworkRequest;
+import com.example.tacademy.miniproject.manager.PropertyManager;
 import com.example.tacademy.miniproject.request.SignUpRequest;
 
 import butterknife.BindView;
@@ -41,7 +42,7 @@ public class SignUpFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_signup, container, false);
+        View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -49,13 +50,16 @@ public class SignUpFragment extends Fragment {
     @OnClick(R.id.btn_sign_up)
     public void onSingUp() {
         String username = nameView.getText().toString();
-        String email = emailView.getText().toString();
-        String password = passwordView.getText().toString();
-        SignUpRequest request = new SignUpRequest(getContext(), username, password, email, "1234");
+        final String email = emailView.getText().toString();
+        final String password = passwordView.getText().toString();
+        String regid = PropertyManager.getInstance().getRegistrationId();
+        SignUpRequest request = new SignUpRequest(getContext(), username, password, email, regid);
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<User>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
                 User user = result.getResult();
+                PropertyManager.getInstance().setEmail(email);
+                PropertyManager.getInstance().setPassword(password);
                 Toast.makeText(getContext(), "user id :" + user.getId(), Toast.LENGTH_SHORT).show();
                 ((SimpleLoginActivity)getActivity()).moveMainActivity();
             }
